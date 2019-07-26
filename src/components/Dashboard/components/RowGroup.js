@@ -15,6 +15,8 @@ function RowGroup({ category }) {
       <RowCard />
       <RowCard />
       <RowCard />
+
+
     </RowGroupContainer>
   );
 }
