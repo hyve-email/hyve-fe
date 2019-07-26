@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import RowGroup from "./components/RowGroup";
+import RowGroup from './components/RowGroup';
 
 const Dashboard = props => {
   return (
@@ -11,10 +11,9 @@ const Dashboard = props => {
         <span>this time privacy is on your terms 💪</span>
       </div>
 
-
-      <RowGroup/>
-      <RowGroup/>
-      <RowGroup/>
+      <RowGroup category="Spam" />
+      <RowGroup category="Personal" />
+      <RowGroup category="Professional" />
     </DashboardContainer>
   );
 };
@@ -36,7 +35,5 @@ const DashboardContainer = styled.div`
   width: 100%;
   height: 100%;
 `;
-
-
 
 export default Dashboard;

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Dashboard from './components/Dashboard/Dashboard';
 import Login from './components/Login/Login';
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
 import './App.css';
 
 function App() {
@@ -8,14 +10,9 @@ function App() {
 
   return (
     <div className="App">
-      <main className="App-main">
-        {isLoggedIn ? <Dashboard /> : <Login />}
-        {isLoggedIn ? (
-          <button onClick={() => setLogin(!isLoggedIn)}>Logout</button>
-        ) : (
-          <button onClick={() => setLogin(!isLoggedIn)}>Login</button>
-        )}
-      </main>
+      <Header isLoggedIn={isLoggedIn} setLogin={setLogin} />
+      <main className="App-main">{isLoggedIn ? <Dashboard /> : <Login />}</main>
+      <Footer />
     </div>
   );
 }

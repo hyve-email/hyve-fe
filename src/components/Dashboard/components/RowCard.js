@@ -5,14 +5,17 @@ import styled from 'styled-components';
 const RowCard = () => {
   return (
     <Row>
-      <div>
-        <span>Website</span>
-        <span style={{ marginLeft: 10 }}>website.com</span>
+      <div className="site--details">
+        <div className="pic--placeholder" />
+        <div className="email--details">
+          <span>email@gmail.com</span>
+          <span style={{ marginLeft: 20 }}>email@hyve.mail</span>
+        </div>
       </div>
       <div className="action--buttons">
-        <span>send</span>
-        <span>pause</span>
-        <span>remove</span>
+        <button>Mute</button>
+        <button>Reply</button>
+        <span>Edit</span>
       </div>
     </Row>
   );
@@ -21,17 +24,50 @@ const RowCard = () => {
 const Row = styled.div`
   display: flex;
   align-self: center;
+  align-items: center;
   justify-content: space-between;
-  background-color: #fafafa;
-  border-bottom: 1px solid #e7e7e7;
-  border-color: #e7e7e7;
   flex-direction: row;
   width: 100%;
-  padding: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  margin: 10px;
+  padding: 20px 20px;
+  border-radius: 10px;
+
+  .site--details {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .pic--placeholder {
+    width: 60px;
+    height: 60px;
+    background-color: black;
+    border-radius: 100%;
+    margin-left: 10px;
+    margin-right: 50px;
+  }
+
+  .email--details {
+    align-self: center;
+  }
 
   .action--buttons {
+    display: flex;
+    align-items: center;
+
     span {
+      font-size: 16px;
+      color: gray;
+      font-weight: bold;
+    }
+    button {
+    font-size: 14px;
+    font-weight: bold;
       margin-right: 10px;
+      height: 35px;
+      width: 70px;
+      border-radius: 5px; 
+      outline: none;
     }
   }
 `;
