@@ -18,3 +18,19 @@
   align-items: center;
   font-size: calc(10px + 2vmin);
 }
+
+
+/* Google Login button */
+.czLUDv span {
+  font-size: 20px;  
+}
+
+.impbMx button {
+  padding: 10px !important;
+  border-radius: 8px !important;
+}
+
+.impbMx button:hover {
+  background-color: #397bf5 !important;
+  color: #fff !important;
+}
