@@ -27,9 +27,9 @@ const Dashboard = props => {
         <span>this time privacy is on your terms 💪</span>
       </div>
 
-      <RowGroup category="Spam" />
-      <RowGroup category="Personal" />
-      <RowGroup category="Professional" />
+      <RowGroup cardImg={localStorage.getItem('image')} category="Spam" />
+      <RowGroup cardImg={localStorage.getItem('image')} category="Personal" />
+      <RowGroup cardImg={localStorage.getItem('image')} category="Professional" />
     </DashboardContainer>
   );
 };

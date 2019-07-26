@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 // takes in item with title, site, and action buttons
-const RowCard = () => {
+const RowCard = ({cardImg}) => {
   return (
     <Row>
       <div className="site--details">
-        <div className="pic--placeholder" />
+        <img src={cardImg} alt='Profile Image' className="pic--placeholder" />
         <div className="email--details">
           <span>email@gmail.com</span>
           <span style={{ marginLeft: 20 }}>email@hyve.mail</span>
