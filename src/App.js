@@ -1,19 +1,30 @@
 import React, { useState } from 'react';
-import Dashboard from './components/Dashboard/Dashboard';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
+
+// Components
 import Login from './components/Login/Login';
-import Header from './components/layout/Header';
-import Footer from './components/layout/Footer';
+import Dashboard from './components/Dashboard/Dashboard';
+
+import HTTP404 from './components/shared/HTTP404';
+
+// Styles
 import './App.css';
 
-function App() {
-  const [isLoggedIn, setLogin] = useState(true);
+import { DefaultRoute, ProtectedRoute } from './routes';
 
+function App() {
   return (
-    <div className="App">
-      <Header isLoggedIn={isLoggedIn} setLogin={setLogin} />
-      <main className="App-main">{isLoggedIn ? <Dashboard /> : <Login />}</main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <React.Fragment>
+        <Switch>
+          <DefaultRoute exact path="/" component={() => <Login />} />
+
+          <ProtectedRoute exact path="/me" component={() => <Dashboard />} />
+
+          <Route component={HTTP404} />
+        </Switch>
+      </React.Fragment>
+    </BrowserRouter>
   );
 }
 
