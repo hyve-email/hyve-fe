@@ -3,18 +3,15 @@ import styled from 'styled-components';
 import RowCard from './RowCard';
 
 // going to take in header/title and array of obj/items s
-function RowGroup({ category }) {
+function RowGroup({ category, cardImg }) {
   return (
     <RowGroupContainer>
       <span>{category}</span>
 
-      <RowCard />
-      <RowCard />
-      <RowCard />
-      <RowCard />
-      <RowCard />
-      <RowCard />
-      <RowCard />
+      <RowCard cardImg={cardImg} />
+      <RowCard cardImg={cardImg} />
+      <RowCard cardImg={cardImg} />
+      <RowCard cardImg={cardImg} />
 
 
     </RowGroupContainer>

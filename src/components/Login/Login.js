@@ -1,39 +1,46 @@
 import React, { useState } from 'react';
-import axios from 'axios'
 import styled from 'styled-components';
 import GoogleLogin from 'react-google-login';
+import PropTypes from 'prop-types';
 import Icon from '../Icon';
 import HyveLogo from '../../assets/hyve-logo.png';
-import { GOOGLE_CLIENT_ID } from '../../.env';
 
-const responseGoogle = response => {
-  console.log(JSON.stringify(response, null, 2));
-  // TODO Remove once connected to backend
-  console.log('token', response.accessToken);
-  console.log('googleToken', response.accessToken);
-  localStorage.setItem('token', response.accessToken);
-  axios.post('/user', {
-    firstName: 'Fred',
-    lastName: 'Flintstone'
-  })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+// API
+import UserService from '../../services/user';
 
+const responseGoogle = async response => {
+  const { Zi, googleId, profileObj } = response;
+  const { access_token } = Zi;
+  const { email, name, imageUrl } = profileObj;
+
+  const data = { email, name, imageUrl, googleId };
+
+  try {
+    await localStorage.setItem('googleToken', access_token);
+    await localStorage.setItem('googleId', googleId);
+    await localStorage.setItem('name', name);
+    await localStorage.setItem('email', email);
+    await localStorage.setItem('profile_image', imageUrl);
+
+    const response = await UserService.create(data);
+    console.log({ response });
+  } catch (err) {
+    console.log({ err });
+  }
 };
 
 const Login = props => {
   return (
     <LoginContainer>
-      <Icon size={100} icon={HyveLogo} />
-      <h3>Welcome to Hyve</h3>
-      <span>Liberate your email in minutes</span>
+      <Icon size={180} icon={HyveLogo} />
+      <h3>Welcome to your Hyve</h3>
+      <span style={{ fontSize: 25, fontWeight: '400', textAlign: 'center' }}>
+        Security, Safety, Organization <br /> all in one hyve.
+      </span>
       <GoogleWrapper>
         <GoogleLogin
-          clientId={GOOGLE_CLIENT_ID}
+          clientId="497597479194-ahqalu2dcn6ggq2lrr5k0hov52dtr2uq.apps.googleusercontent.com"
+          buttonText="Continue with Google"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
           cookiePolicy={'single_host_origin'}
@@ -68,7 +75,7 @@ const LoginContainer = styled.div`
 
 const GoogleWrapper = styled.div`
   align-self: center;
-  width: 200px;
+
   margin-top: 25px;
 `;
 

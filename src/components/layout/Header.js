@@ -3,15 +3,14 @@ import HyveLogo from '../../assets/hyve-logo.png';
 import styled from 'styled-components';
 import Icon from '../Icon';
 
-const Header = ({ isLoggedIn, setLogin }) => {
-  const buttonText = isLoggedIn ? 'Logout' : 'Login';
+const Header = ({ profileImage }) => {
   return (
     <HeaderContainer>
       <Icon size={40} icon={HyveLogo} />
       <ButtonGroup>
         <a href="#">Account</a>
         <a href="#">Settings</a>
-        <div className="pic--placeholder" />
+        <img src={profileImage} alt="profile image" className="pic--placeholder" />
       </ButtonGroup>
     </HeaderContainer>
   );
