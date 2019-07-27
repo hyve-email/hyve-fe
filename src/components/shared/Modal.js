@@ -1,47 +1,48 @@
-import React, { useEffect } from "react";
-import { createPortal } from "react-dom";
-import styled from "styled-components";
+import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
+import styled from 'styled-components';
 
 const Portal = ({ children }) => {
-    const modalRoot = document.getElementById("modal");
-    const el = document.createElement("div");
+  const modalRoot = document.getElementById('modal');
+  const el = document.createElement('div');
 
-    useEffect(() => {
-        modalRoot.appendChild(el);
-    }, [el, modalRoot]);
+  useEffect(() => {
+    modalRoot.appendChild(el);
+  }, [el, modalRoot]);
 
-    useEffect(() => {
-        return () => modalRoot.removeChild(el);
-    });
-    return createPortal(children, el);
+  useEffect(() => {
+    return () => modalRoot.removeChild(el);
+  });
+  return createPortal(children, el);
 };
 
 const Modal = ({ children, toggle, isOpen }) => {
-
-    console.log('render modal')
-        return (
-        <Portal>
-            {isOpen && (
-                <ModalWrapper>
-                    <ModalCard>
-                        <CloseButton onClick={() => toggle && toggle(false)}>
-                            <span>X</span>
-                        </CloseButton>
-                        {children}
-                    </ModalCard>
-                    <Background onClick={toggle} />
-                </ModalWrapper>
-            )}
-        </Portal>
-    );
+  console.log('render modal');
+  return (
+    <Portal>
+      {isOpen && (
+        <ModalWrapper>
+          <ModalCard>
+            <CloseButton onClick={() => toggle && toggle(false)}>
+              <span>X</span>
+            </CloseButton>
+            {children}
+          </ModalCard>
+          <Background onClick={toggle} />
+        </ModalWrapper>
+      )}
+    </Portal>
+  );
 };
 export default Modal;
 
 const ModalWrapper = styled.div`
-  position: fixed;  top: 50%;
+  position: fixed;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100%;  height: 100%;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,9 +64,10 @@ const CloseButton = styled.button`
   border: none;
   background: transparent;
   padding: 10px;
-  &:hover {    
+  &:hover {
     cursor: pointer;
-  }`;
+  }
+`;
 const Background = styled.div`
   position: absolute;
   width: 100%;

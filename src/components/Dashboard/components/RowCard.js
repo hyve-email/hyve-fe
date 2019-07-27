@@ -1,14 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Modal from '../../shared/Modal';
 
-
 const RowCard = ({ cardImg, droneEmail, targetEmail }) => {
-    const [isModalOpen, setModal] = useState(false);
-    useEffect(() => {
-
-    }, [isModalOpen]);
-    console.log('isModalOpen', isModalOpen)
+  const [isModalOpen, setModal] = useState(false);
+  useEffect(() => {}, [isModalOpen]);
+  console.log('isModalOpen', isModalOpen);
   const onClick = () => console.log('button clicked');
 
   return (
@@ -19,29 +16,50 @@ const RowCard = ({ cardImg, droneEmail, targetEmail }) => {
           alt="Profile thumbnail"
           className="pic--placeholder"
         />
-        <div style={{ width: "55%"}}>
-        <div className="email--details">
-          <span>{targetEmail}</span>
-          <hr style={{
-            border:"none",
-            borderTop:"3px dotted #00F09A",
-            height:"1px",
-            width:"90%",
-            justifyContent:"center",
-            marginLeft:25
-
-          }}/>
-          <span style={{ marginLeft: 20 }}>{droneEmail}</span>
+        <div style={{ width: '55%' }}>
+          <div className="email--details">
+            <span>{targetEmail}</span>
+            <hr
+              style={{
+                border: 'none',
+                borderTop: '3px dotted #00F09A',
+                height: '1px',
+                width: '90%',
+                justifyContent: 'center',
+                marginLeft: 25,
+              }}
+            />
+            <span style={{ marginLeft: 20 }}>{droneEmail}</span>
+          </div>
         </div>
+        <div className="action--buttons">
+          <button
+            style={{ borderColor: '#FF5252', color: '#FF5252' }}
+            onClick={() => onClick()}
+          >
+            Mute
+          </button>
+          <button
+            style={{ borderColor: '#5282FF', color: '#5282FF' }}
+            onClick={() => setModal(!isModalOpen)}
+          >
+            Reply
+          </button>
+          <span style={{ fontWeight: 6500 }} onClick={() => onClick()}>
+            Edit
+          </span>
+          <Modal toggle={setModal} isOpen={isModalOpen}>
+            <ReplyContainer>
+              <button
+                style={{ borderColor: '#5282FF', color: '#5282FF' }}
+                onClick={() => setModal(!isModalOpen)}
+              >
+                Reply
+              </button>
+            </ReplyContainer>
+          </Modal>
         </div>
-      <div className="action--buttons">
-        <button style={{borderColor:"#FF5252", color:"#FF5252"}} onClick={() => onClick()}>Mute</button>
-        <button style={{borderColor:"#5282FF", color:"#5282FF"}} onClick={() => setModal(!isModalOpen)}>Reply</button>
-        <span style={{fontWeight:6500}} onClick={() => onClick()}>Edit</span>
-          <Modal toggle={setModal} isOpen={isModalOpen}>children</Modal>
       </div>
-      </div>
-
     </Row>
   );
 };
@@ -112,6 +130,14 @@ const Row = styled.div`
       }
     }
   }
+`;
+
+const ReplyContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  width: 800px;
 `;
 
 export default RowCard;
