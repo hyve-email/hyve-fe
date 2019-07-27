@@ -122,14 +122,15 @@ const AddContainer = styled.div`
   input {
     border-radius: 5px;
     border: #969696 solid 1px;
-    padding: 5px
+    padding: 5px;
   }
 
   button {
+    height: 35px;
     margin-top: 30px;
     margin-right: 20px;
-    border-color: #5282FF;
-    color: #5282FF;
+    border-color: #5282ff;
+    color: #5282ff;
   }
 `;
 
