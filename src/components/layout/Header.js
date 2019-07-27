@@ -1,7 +1,7 @@
 import React from 'react';
 import HyveLogo from '../../assets/hyve-logo.png';
 import styled from 'styled-components';
-import Icon from '../Icon';
+import Icon from '../shared/Icon';
 
 const Header = ({ profileImage }) => {
   return (

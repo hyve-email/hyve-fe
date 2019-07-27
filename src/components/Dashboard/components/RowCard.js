@@ -1,7 +1,14 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
+import Modal from '../../shared/Modal';
+
 
 const RowCard = ({ cardImg, droneEmail, targetEmail }) => {
+    const [isModalOpen, setModal] = useState(false);
+    useEffect(() => {
+
+    }, [isModalOpen]);
+    console.log('isModalOpen', isModalOpen)
   const onClick = () => console.log('button clicked');
 
   return (
@@ -29,8 +36,9 @@ const RowCard = ({ cardImg, droneEmail, targetEmail }) => {
         </div>
       <div className="action--buttons">
         <button style={{borderColor:"#FF5252", color:"#FF5252"}} onClick={() => onClick()}>Mute</button>
-        <button style={{borderColor:"#5282FF", color:"#5282FF"}}onClick={() => onClick()}>Reply</button>
-        <span style={{fontWeight:6500}}onClick={() => onClick()}>Edit</span>
+        <button style={{borderColor:"#5282FF", color:"#5282FF"}} onClick={() => setModal(!isModalOpen)}>Reply</button>
+        <span style={{fontWeight:6500}} onClick={() => onClick()}>Edit</span>
+          <Modal toggle={setModal} isOpen={isModalOpen}>children</Modal>
       </div>
       </div>
 

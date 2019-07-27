@@ -20,10 +20,6 @@ const Dashboard = props => {
   return (
     <DashboardContainer>
       <Header profileImage={localStorage.getItem('profile_image')} />
-      {/*<div className="dashboard--header">*/}
-      {/*  <h3>You have 9,000 emails ✉️</h3>*/}
-      {/*  <span>this time privacy is on your terms 💪</span>*/}
-      {/*</div>*/}
 
       <RowGroup
         cardImg={localStorage.getItem('image')}
