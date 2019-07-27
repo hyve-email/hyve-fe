@@ -1,54 +1,77 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import RowGroup from './components/RowGroup';
 import Header from '../layout/Header';
-import mockData from './mockData';
+
 import { PlusIcon } from '../../assets/plus-solid';
 import Modal from '../shared/Modal';
 
-const Dashboard = props => {
-  const [isModalOpen, toggleModal] = useState(false);
+import DroneService from '../../services/drone';
 
-  useEffect(() => {
-    localStorage.setItem('name', 'John Doe');
-    localStorage.setItem(
-      'image',
-      'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
-    );
-    localStorage.setItem(
-      'profile_image',
-      'https://content-static.upwork.com/uploads/2014/10/02123010/profilephoto_goodcrop.jpg'
-    );
-  });
+class Dashboard extends React.Component {
+  state = { isModalOpen: false };
 
-  return (
-    <DashboardContainer>
-      <Header profileImage={localStorage.getItem('profile_image')} />
+  async componentDidMount() {}
 
-      <AddButton onClick={() => toggleModal(true)}>
-        <div>{PlusIcon()}</div>
-        <span>Add Drone</span>
-      </AddButton>
-      <RowGroup />
-      <Modal isOpen={isModalOpen} toggle={toggleModal}>
-        <AddContainer>
+  submit = async e => {
+    e.preventDefault();
+
+    const form = new FormData(e.target);
+
+    const category = form.get('category');
+    const target_email = form.get('target_email');
+
+    try {
+      const response = await DroneService.create(target_email, category);
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  render() {
+    return (
+      <DashboardContainer>
+        <Header profileImage={localStorage.getItem('profile_image')} />
+
+        <AddButton onClick={() => this.setState({ isModalOpen: true })}>
+          <div>{PlusIcon()}</div>
           <span>Add Drone</span>
-          <div>
-            <label htmlFor="drone">New Email</label>
-            <input name="drone" type="text" />
+        </AddButton>
+        <RowGroup />
+        <Modal
+          isOpen={this.state.isModalOpen}
+          toggle={() => this.setState({ isModalOpen: false })}
+        >
+          <AddContainer>
+            <span>Add Drone</span>
+            <form onSubmit={this.submit}>
+              <div style={{ width: '100%' }}>
+                <label htmlFor="drone">New Email</label>
+                <input
+                  required
+                  name="target_email"
+                  type="text"
+                  aria-describedby="target_email"
+                />
 
-            <label htmlFor="category">Category</label>
-            <input name="drone" type="text" />
-          </div>
+                <label htmlFor="category">Category</label>
+                <input
+                  name="category"
+                  type="text"
+                  required
+                  aria-describedby="category"
+                />
+              </div>
 
-          <button type="submit" onClick={() => console.log('add email')}>
-            Add drone
-          </button>
-        </AddContainer>
-      </Modal>
-    </DashboardContainer>
-  );
-};
+              <button type="submit">Add drone</button>
+            </form>
+          </AddContainer>
+        </Modal>
+      </DashboardContainer>
+    );
+  }
+}
 
 const DashboardContainer = styled.div`
   display: flex;
@@ -122,14 +145,14 @@ const AddContainer = styled.div`
   input {
     border-radius: 5px;
     border: #969696 solid 1px;
-    padding: 5px
+    padding: 5px;
   }
 
   button {
     margin-top: 30px;
     margin-right: 20px;
-    border-color: #5282FF;
-    color: #5282FF;
+    border-color: #5282ff;
+    color: #5282ff;
   }
 `;
 

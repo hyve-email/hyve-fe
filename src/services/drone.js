@@ -3,6 +3,27 @@ import config from '../config';
 
 const droneInstance = axios.create({ baseURL: config.API_URL });
 
+async function create(target_email, category) {
+  const account_id = await localStorage.getItem('account_id');
+
+  if (account_id && account_id != null) {
+    try {
+      const payload = {
+        target_email,
+        category,
+      };
+
+      const { data } = await droneInstance.post('/drone', payload);
+
+      if (data.success) {
+        return data;
+      }
+    } catch (err) {
+      throw err;
+    }
+  }
+}
+
 async function read() {
   const account_id = await localStorage.getItem('account_id');
 
