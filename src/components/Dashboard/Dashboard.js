@@ -158,52 +158,9 @@ const AddContainer = styled.form`
   button {
     padding: 5px;
     margin-top: 30px;
-    margin-right: 20px;
     border-color: #5282ff;
     color: #5282ff;
-  }
-
-  select {
-    -webkit-appearance: none;
-    border-radius: 5px;
-    border: #969696 solid 1px;
-    padding: 5px;
-  }
-`;
-
-const ReplyContainer = styled.form`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  color: #828282;
-
-  div {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 30px;
-    width: 60%;
-  }
-
-  label {
-    margin-top: 25px;
-    margin-right: 10px;
-    margin-bottom: 3px;
-  }
-
-  input {
-    border-radius: 5px;
-    border: #969696 solid 1px;
-    padding: 5px;
-  }
-
-  button {
-    padding: 5px;
-    margin-top: 30px;
-    margin-right: 20px;
-    border-color: #5282ff;
-    color: #5282ff;
+    width: 100% !important;
   }
 
   select {

@@ -12,6 +12,7 @@ class RowCard extends React.Component {
     target_email: '',
     category: '',
     isModalOpen: false,
+    isEditModalOpen: false,
   };
 
   componentDidMount() {
@@ -53,7 +54,7 @@ class RowCard extends React.Component {
   };
 
   render() {
-    const { muted, isModalOpen } = this.state;
+    const { muted, isModalOpen, isEditModalOpen } = this.state;
     return (
       <Row>
         <div className="site--details">
@@ -121,10 +122,43 @@ class RowCard extends React.Component {
             </button>
             <span
               style={{ fontWeight: 6500 }}
-              // onClick={() => onClick()}
+              onClick={() => this.setState({ isEditModalOpen: true })}
             >
               Edit
             </span>
+
+            <Modal
+              toggle={() => this.setState({ isEditModalOpen: false })}
+              isOpen={isEditModalOpen}
+            >
+              <EditContainer onSubmit={this.submit}>
+                <span>Edit Drone</span>
+                <div style={{ width: '100%' }}>
+                  <label htmlFor="target_email">Email</label>
+                  <input
+                    required
+                    name="target_email"
+                    type="text"
+                    aria-describedby="target_email"
+                  />
+
+                  <label htmlFor="category">Category</label>
+                  <select
+                    required
+                    aria-describedby="category"
+                    name="category"
+                    id="category"
+                  >
+                    <option value="SPAM">Spam</option>
+                    <option value="WORK">Work</option>
+                    <option value="PERSONAL">Personal</option>
+                  </select>
+                </div>
+
+                <button type="submit">Edit drone</button>
+              </EditContainer>
+            </Modal>
+
             <Modal
               toggle={() => this.setState({ isModalOpen: false })}
               isOpen={isModalOpen}
@@ -236,7 +270,7 @@ const Row = styled.div`
       font-weight: bold;
       margin-right: 20px;
       height: 35px;
-      width: 70px;
+      width: 70px !important;
       border-radius: 5px;
       outline: none;
 
@@ -274,7 +308,7 @@ const ReplyContainer = styled.form`
   }
 
   button {
-  align-self: center;
+    align-self: center;
     width: 100%;
     padding: 5px;
     margin-top: 30px;
@@ -282,6 +316,49 @@ const ReplyContainer = styled.form`
     border-color: #5282ff;
     color: #5282ff;
     margin-right: 0;
+  }
+`;
+
+const EditContainer = styled.form`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #828282;
+
+  div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 30px;
+    width: 60%;
+  }
+
+  label {
+    margin-top: 25px;
+    margin-right: 10px;
+    margin-bottom: 3px;
+  }
+
+  input {
+    border-radius: 5px;
+    border: #969696 solid 1px;
+    padding: 5px;
+  }
+
+  button {
+    padding: 5px;
+    margin-top: 30px;
+    border-color: #5282ff;
+    color: #5282ff;
+    width: 100%;
+  }
+
+  select {
+    -webkit-appearance: none;
+    border-radius: 5px;
+    border: #969696 solid 1px;
+    padding: 5px;
   }
 `;
 
