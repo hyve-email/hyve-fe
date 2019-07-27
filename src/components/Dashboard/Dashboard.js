@@ -26,8 +26,7 @@ class Dashboard extends React.Component {
     try {
       const response = await DroneService.create(target_email, category);
 
-      window.location.reload()
-      console.log(response);
+      window.location.reload();
     } catch (e) {
       console.log(e);
     }

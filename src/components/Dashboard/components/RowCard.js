@@ -7,7 +7,7 @@ import DroneService from '../../../services/drone';
 class RowCard extends React.Component {
   state = {
     account_id: '',
-    muted: false,
+    muted: true,
     drone_email: '',
     target_email: '',
     category: '',
@@ -27,10 +27,8 @@ class RowCard extends React.Component {
     try {
       const { muted, drone_email, target_email, category } = this.state;
 
-      const is_muted = !muted;
-
       const response = await DroneService.update(
-        is_muted,
+        muted,
         drone_email,
         target_email,
         category
@@ -66,16 +64,30 @@ class RowCard extends React.Component {
           <div style={{ width: '55%' }}>
             <div className="email--details">
               <span>{this.props.droneEmail}</span>
-              <hr
-                style={{
-                  border: 'none',
-                  borderTop: '3px dotted #00F09A',
-                  height: '1px',
-                  width: '90%',
-                  justifyContent: 'center',
-                  marginLeft: 25,
-                }}
-              />
+              {muted ? (
+                <hr
+                  style={{
+                    border: 'none',
+                    borderTop: '3px dotted #FF504D',
+                    height: '1px',
+                    width: '90%',
+                    justifyContent: 'center',
+                    marginLeft: 25,
+                  }}
+                />
+              ) : (
+                <hr
+                  style={{
+                    border: 'none',
+                    borderTop: '3px dotted #00F09A',
+                    height: '1px',
+                    width: '90%',
+                    justifyContent: 'center',
+                    marginLeft: 25,
+                  }}
+                />
+              )}
+
               <span style={{ marginLeft: 20 }}>{this.props.targetEmail}</span>
             </div>
           </div>
