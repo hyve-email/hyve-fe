@@ -21,4 +21,25 @@ async function read() {
   }
 }
 
-export default { read };
+async function update(muted, drone_email, target_email, category) {
+  try {
+    const account_id = await localStorage.getItem('account_id');
+    const payload = {
+      account_id,
+      muted,
+      drone_email,
+      target_email,
+      category,
+    };
+
+    const { data } = await droneInstance.put('/drone', payload);
+
+    if (data.success) {
+      return data;
+    }
+  } catch (err) {
+    throw err;
+  }
+}
+
+export default { read, update };

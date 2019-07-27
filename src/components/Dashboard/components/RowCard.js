@@ -2,20 +2,59 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Modal from '../../shared/Modal';
 
+import DroneService from '../../../services/drone';
+
 class RowCard extends React.Component {
   state = {
     account_id: '',
     muted: false,
+    drone_email: '',
+    target_email: '',
+    category: '',
   };
 
   componentDidMount() {
     this.setState({
-      account_id: this.props.account_id,
+      account_id: this.props.accountId,
       muted: this.props.muted,
+      drone_email: this.props.droneEmail,
+      target_email: this.props.targetEmail,
+      category: this.props.category,
     });
   }
 
+  onMute = async () => {
+    try {
+      const { muted, drone_email, target_email, category } = this.state;
+
+      const is_muted = !muted;
+
+      const response = await DroneService.update(
+        is_muted,
+        drone_email,
+        target_email,
+        category
+      );
+
+      if (response.success) {
+        const { data } = response;
+
+        this.setState({
+          muted: data.muted,
+          drone_email: data.drone_email,
+          target_email: data.target_email,
+          category: data.category,
+        });
+
+        this.componentDidMount();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   render() {
+    const { muted } = this.state;
     return (
       <Row>
         <div className="site--details">
@@ -40,33 +79,48 @@ class RowCard extends React.Component {
               <span style={{ marginLeft: 20 }}>{this.props.droneEmail}</span>
             </div>
           </div>
-          {/* <div className="action--buttons">
-            <button
-              style={{ borderColor: '#FF5252', color: '#FF5252' }}
-              onClick={() => onClick()}
-            >
-              Mute
-            </button>
+          <div className="action--buttons">
+            {muted ? (
+              <button
+                style={{ backgroundColor: '#FF5252', color: '#fff' }}
+                onClick={this.onMute}
+              >
+                Unmute
+              </button>
+            ) : (
+              <button
+                style={{ borderColor: '#FF5252', color: '#FF5252' }}
+                onClick={this.onMute}
+              >
+                Mute
+              </button>
+            )}
+
             <button
               style={{ borderColor: '#5282FF', color: '#5282FF' }}
-              onClick={() => setModal(!isModalOpen)}
+              // onClick={() => setModal(!isModalOpen)}
             >
               Reply
             </button>
-            <span style={{ fontWeight: 6500 }} onClick={() => onClick()}>
+            <span
+              style={{ fontWeight: 6500 }}
+              // onClick={() => onClick()}
+            >
               Edit
             </span>
-            <Modal toggle={setModal} isOpen={isModalOpen}>
+            <Modal
+            // toggle={setModal} isOpen={isModalOpen}
+            >
               <ReplyContainer>
                 <button
                   style={{ borderColor: '#5282FF', color: '#5282FF' }}
-                  onClick={() => setModal(!isModalOpen)}
+                  // onClick={() => setModal(!isModalOpen)}
                 >
                   Reply
                 </button>
               </ReplyContainer>
             </Modal>
-          </div> */}
+          </div>
         </div>
       </Row>
     );

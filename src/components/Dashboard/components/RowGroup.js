@@ -12,42 +12,46 @@ class RowGroup extends React.Component {
   };
 
   async componentDidMount() {
-    const data = await DroneService.read();
+    try {
+      const data = await DroneService.read();
 
-    if (data.success) {
-      let { spam_drones, personal_drones, work_drones } = this.state;
+      if (data.success) {
+        let { spam_drones, personal_drones, work_drones } = this.state;
 
-      const { drones } = data.data;
+        const { drones } = data.data;
 
-      if (drones.PERSONAL && drones.PERSONAL.length > 0) {
-        this.setState({ personal_drones: drones.PERSONAL });
+        if (drones.PERSONAL && drones.PERSONAL.length > 0) {
+          this.setState({ personal_drones: drones.PERSONAL });
+        }
+        if (drones.WORK && drones.WORK.length > 0) {
+          this.setState({ work_drones: drones.WORK });
+        }
+        if (drones.SPAM && drones.SPAM.length > 0) {
+          this.setState({ spam_drones: drones.SPAM });
+        }
       }
-      if (drones.WORK && drones.WORK.length > 0) {
-        this.setState({ work_drones: drones.WORK });
-      }
-      if (drones.SPAM && drones.SPAM.length > 0) {
-        this.setState({ spam_drones: drones.SPAM });
-      }
+    } catch (e) {
+      console.log({ e });
     }
   }
 
   render() {
     const { spam_drones, work_drones, personal_drones } = this.state;
 
-    console.log({ spam_drones, work_drones, personal_drones });
-
     return (
       <RowGroupContainer>
         <h2>Spam</h2>
         {spam_drones.length > 0 ? (
-          spam_drones.map(drone => {
+          spam_drones.map((drone, index) => {
             return (
               <RowCard
+                key={index}
                 accountId={drone.account_id}
                 cardImg={drone.icon_image}
                 droneEmail={drone.drone_email}
                 targetEmail={drone.target_email}
                 muted={drone.muted}
+                category={drone.category}
               />
             );
           })
@@ -59,14 +63,16 @@ class RowGroup extends React.Component {
 
         <h2>Work</h2>
         {work_drones.length > 0 ? (
-          work_drones.map(drone => {
+          work_drones.map((drone, index) => {
             return (
               <RowCard
+                key={index}
                 accountId={drone.account_id}
                 cardImg={drone.icon_image}
                 droneEmail={drone.drone_email}
                 targetEmail={drone.target_email}
                 muted={drone.muted}
+                category={drone.category}
               />
             );
           })
@@ -78,14 +84,16 @@ class RowGroup extends React.Component {
 
         <h2>Personal</h2>
         {personal_drones.length > 0 ? (
-          personal_drones.map(drone => {
+          personal_drones.map((drone, index) => {
             return (
               <RowCard
+                key={index}
                 accountId={drone.account_id}
                 cardImg={drone.icon_image}
                 droneEmail={drone.drone_email}
                 targetEmail={drone.target_email}
                 muted={drone.muted}
+                category={drone.category}
               />
             );
           })
