@@ -11,7 +11,9 @@ import DroneService from '../../services/drone';
 class Dashboard extends React.Component {
   state = { isModalOpen: false };
 
-  async componentDidMount() {}
+  async componentDidMount() {
+    this.setState({ isModalOpen: false });
+  }
 
   submit = async e => {
     e.preventDefault();
@@ -23,6 +25,8 @@ class Dashboard extends React.Component {
 
     try {
       const response = await DroneService.create(target_email, category);
+
+      window.location.reload()
       console.log(response);
     } catch (e) {
       console.log(e);

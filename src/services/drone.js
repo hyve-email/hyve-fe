@@ -8,12 +8,17 @@ async function create(target_email, category) {
 
   if (account_id && account_id != null) {
     try {
+      const account_id = await localStorage.getItem('account_id');
+
       const payload = {
+        account_id,
         target_email,
         category,
       };
 
       const { data } = await droneInstance.post('/drone', payload);
+
+      console.log({ data });
 
       if (data.success) {
         return data;
@@ -63,4 +68,4 @@ async function update(muted, drone_email, target_email, category) {
   }
 }
 
-export default { read, update };
+export default { read, update, create };

@@ -46,7 +46,7 @@ class RowCard extends React.Component {
           category: data.category,
         });
 
-        this.componentDidMount();
+        window.location.reload();
       }
     } catch (err) {
       console.log(err);
@@ -65,7 +65,7 @@ class RowCard extends React.Component {
           />
           <div style={{ width: '55%' }}>
             <div className="email--details">
-              <span>{this.props.targetEmail}</span>
+              <span>{this.props.droneEmail}</span>
               <hr
                 style={{
                   border: 'none',
@@ -76,7 +76,7 @@ class RowCard extends React.Component {
                   marginLeft: 25,
                 }}
               />
-              <span style={{ marginLeft: 20 }}>{this.props.droneEmail}</span>
+              <span style={{ marginLeft: 20 }}>{this.props.targetEmail}</span>
             </div>
           </div>
           <div className="action--buttons">
@@ -126,15 +126,6 @@ class RowCard extends React.Component {
     );
   }
 }
-
-// ({ cardImg, droneEmail, targetEmail, account_id }) => {
-//   const [isModalOpen, setModal] = useState(false);
-//   const [accountId, setAccountId] = useState('');
-//   useEffect(() => {}, [isModalOpen]);
-//   console.log('isModalOpen', isModalOpen);
-//   const onClick = () => console.log('button clicked');
-
-// };
 
 const Row = styled.div`
   display: flex;
