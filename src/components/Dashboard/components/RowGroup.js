@@ -2,39 +2,36 @@ import React from 'react';
 import styled from 'styled-components';
 import RowCard from './RowCard';
 
-const RowGroup = ({ category, categoryGroup }) => (
-  <RowGroupContainer>
-    <h2>{category}</h2>
+// going to take in header/title and array of obj/items s
+function RowGroup({ category }) {
+  return (
+    <RowGroupContainer>
+      <span>{category}</span>
 
-    {categoryGroup.map((item, index) => {
-      const { icon_image, drone_email, target_email } = item;
-      return (
-        <RowCard
-          cardImg={icon_image}
-          droneEmail={drone_email}
-          key={index}
-          targetEmail={target_email}
-        />
-      );
-    })}
-  </RowGroupContainer>
-);
+      <RowCard />
+      <RowCard />
+      <RowCard />
+      <RowCard />
+      <RowCard />
+      <RowCard />
+      <RowCard />
+
+
+    </RowGroupContainer>
+  );
+}
 
 const RowGroupContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-self: center;
-  width: 75%;
+  width: 70%;
   padding: 10px 10px 0 10px;
   margin: 30px 0;
 
-  h2 {
+  span {
     text-align: left;
-    font-style: normal;
-    font-weight: 900;
-    color: #787878;
-    margin: 5px -20px;
   }
 `;
 

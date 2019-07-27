@@ -1,36 +1,29 @@
 import React from 'react';
 import HyveLogo from '../../assets/hyve-logo.png';
 import styled from 'styled-components';
-import Icon from '../shared/Icon';
+import Icon from '../Icon';
 
-const Header = ({ profileImage }) => {
+const Header = ({ isLoggedIn, setLogin }) => {
+  const buttonText = isLoggedIn ? 'Logout' : 'Login';
   return (
     <HeaderContainer>
-      <div style={{width:"75%", margin:"auto", display:"flex", justifyContent:"space-between" }}>
-        <Icon size={60} icon={HyveLogo} />
-        <ButtonGroup>
-          <a href="/#">Account Settings</a>
-          <img
-            src={profileImage}
-            alt="Profile thumbnail"
-            className="pic--placeholder"
-          />
-        </ButtonGroup>
-      </div>
+      <Icon size={40} icon={HyveLogo} />
+      <ButtonGroup>
+        <a href="#">Account</a>
+        <a href="#">Settings</a>
+        <div className="pic--placeholder" />
+      </ButtonGroup>
     </HeaderContainer>
   );
 };
 
 const HeaderContainer = styled.div`
-  //padding: 20px 200px;
-  width: 100%;
-  margin: auto;
-  padding: 10px 0;
+  padding: 0 200px;
   height: 60px;
   align-items: center;
   display: flex;
   justify-content: space-between;
-  border:1px solid rgba(188, 188, 188, 0.6);
+
   i {
     margin-left: 30px;
   }
@@ -40,8 +33,8 @@ const ButtonGroup = styled.div`
   display: flex;
   align-items: center;
   .pic--placeholder {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     background-color: black;
     border-radius: 100%;
     margin-left: 10px;
@@ -49,9 +42,8 @@ const ButtonGroup = styled.div`
 
   a {
     margin-right: 10px;
-    color: #000000;
+    color: inherit;
     text-decoration: none;
-    font-weight: 500;
   }
 `;
 
