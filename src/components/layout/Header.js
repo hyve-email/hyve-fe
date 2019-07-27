@@ -16,7 +16,6 @@ const Header = ({ profileImage }) => {
       >
         <Icon size={60} icon={HyveLogo} />
         <ButtonGroup>
-          <a href="/#">Account Settings</a>
           <img
             src={profileImage}
             alt="Profile thumbnail"
