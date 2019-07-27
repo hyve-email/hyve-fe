@@ -27,7 +27,7 @@ const RowGroupContainer = styled.div`
   align-self: center;
   width: 75%;
   padding: 10px 10px 0 10px;
-  margin: 30px 0;
+  margin-bottom: 30px;
 
   h2 {
     text-align: left;

@@ -27,18 +27,20 @@ const Dashboard = props => {
 
       <AddButton onClick={() => toggleModal(true)}>
         <div>{PlusIcon()}</div>
-        <span>Add a Virtual Email</span>
+        <span>Add drone</span>
       </AddButton>
 
       <Modal isOpen={isModalOpen} toggle={toggleModal}>
         <AddContainer>
-          <span>Add a Virtual Email</span>
+          <span>Add drone</span>
           <div>
             <label htmlFor="drone">New Email</label>
             <input name="drone" type="text" />
           </div>
 
-          <button onClick={() => console.log('add email')}>Add Email</button>
+          <button type="submit" onClick={() => console.log('add email')}>
+            Add drone
+          </button>
         </AddContainer>
       </Modal>
 
@@ -77,7 +79,7 @@ const DashboardContainer = styled.div`
   }
 `;
 
-const AddButton = styled.div`
+const AddButton = styled.form`
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -94,11 +96,12 @@ const AddButton = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
     border-radius: 100%;
     background-color: #6c44fa;
     margin-bottom: 15px;
+    padding: 5px;
   }
 
   span {
@@ -114,15 +117,15 @@ const AddContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  
+
   div {
-  margin-top: 30px;
+    margin-top: 30px;
   }
-  
+
   label {
-  margin-right: 10px;
+    margin-right: 10px;
   }
-  
+
   button {
     margin-top: 30px;
   }

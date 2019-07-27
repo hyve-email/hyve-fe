@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60f702ec-cc7b-4a40-a712-e3f7ece51a34" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/plus-solid.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/plus-solid.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/plus-solid.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Dashboard/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dashboard/Dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Dashboard/components/RowGroup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dashboard/components/RowGroup.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +16,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/Dashboard/Dashboard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="40" column="55" selection-start-line="40" selection-start-column="55" selection-end-line="40" selection-end-column="55" />
+            <state relative-caret-position="207">
+              <caret line="9" column="53" selection-start-line="9" selection-start-column="53" selection-end-line="9" selection-end-column="53" />
+              <folding>
+                <element signature="e#0#51#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Dashboard/components/RowCard.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-948">
+              <caret line="19" column="42" lean-forward="true" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
               </folding>
@@ -28,8 +40,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assets/plus-solid.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+            <state relative-caret-position="184">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Dashboard/components/RowGroup.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="409">
+              <caret line="28" column="22" lean-forward="true" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -45,6 +69,8 @@
       <find>isOpen</find>
       <find>isModalOpen</find>
       <find>responseGoogle</find>
+      <find>RowGroupContainer</find>
+      <find>add em</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src</dir>
@@ -68,6 +94,7 @@
         <option value="$PROJECT_DIR$/src/components/Dashboard/components/RowCard.js" />
         <option value="$PROJECT_DIR$/src/components/Login.js" />
         <option value="$PROJECT_DIR$/src/assets/plus-solid.svg" />
+        <option value="$PROJECT_DIR$/src/components/Dashboard/components/RowGroup.js" />
         <option value="$PROJECT_DIR$/src/assets/plus-solid.js" />
         <option value="$PROJECT_DIR$/src/components/Dashboard/Dashboard.js" />
       </list>
@@ -89,6 +116,12 @@
               <item name="hyve-fe" type="b2602c69:ProjectViewProjectNode" />
               <item name="hyve-fe" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hyve-fe" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hyve-fe" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hyve-fe" type="b2602c69:ProjectViewProjectNode" />
@@ -135,7 +168,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10865000" />
+    <option name="totallyTimeSpent" value="12672000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1593" height="1002" extended-state="0" />
@@ -214,16 +247,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Dashboard/components/RowGroup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.prettierrc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -237,16 +260,6 @@
           <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Dashboard/components/RowCard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="681">
-          <caret line="140" column="2" lean-forward="true" selection-start-line="140" selection-start-column="2" selection-end-line="140" selection-end-column="2" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -295,18 +308,38 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Dashboard/components/RowGroup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="28" column="22" lean-forward="true" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/assets/plus-solid.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+        <state relative-caret-position="184">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
         </state>
       </provider>
       <provider editor-type-id="images" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Dashboard/components/RowCard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-948">
+          <caret line="19" column="42" lean-forward="true" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Dashboard/Dashboard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="40" column="55" selection-start-line="40" selection-start-column="55" selection-end-line="40" selection-end-column="55" />
+        <state relative-caret-position="207">
+          <caret line="9" column="53" selection-start-line="9" selection-start-column="53" selection-end-line="9" selection-end-column="53" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
           </folding>
