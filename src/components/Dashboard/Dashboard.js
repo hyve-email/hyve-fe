@@ -43,29 +43,31 @@ class Dashboard extends React.Component {
           isOpen={this.state.isModalOpen}
           toggle={() => this.setState({ isModalOpen: false })}
         >
-          <AddContainer>
+          <AddContainer onSubmit={this.submit}>
             <span>Add Drone</span>
-            <form onSubmit={this.submit}>
-              <div style={{ width: '100%' }}>
-                <label htmlFor="drone">New Email</label>
-                <input
-                  required
-                  name="target_email"
-                  type="text"
-                  aria-describedby="target_email"
-                />
+            <div style={{ width: '100%' }}>
+              <label htmlFor="drone">New Email</label>
+              <input
+                required
+                name="target_email"
+                type="text"
+                aria-describedby="target_email"
+              />
 
-                <label htmlFor="category">Category</label>
-                <input
-                  name="category"
-                  type="text"
-                  required
-                  aria-describedby="category"
-                />
-              </div>
+              <label htmlFor="category">Category</label>
+              <select
+                required
+                aria-describedby="category"
+                name="category"
+                id="category"
+              >
+                <option value="SPAM">Spam</option>
+                <option value="WORK">Work</option>
+                <option value="PERSONAL">Personal</option>
+              </select>
+            </div>
 
-              <button type="submit">Add drone</button>
-            </form>
+            <button type="submit">Add drone</button>
           </AddContainer>
         </Modal>
       </DashboardContainer>
@@ -89,7 +91,7 @@ const DashboardContainer = styled.div`
   }
 `;
 
-const AddButton = styled.form`
+const AddButton = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -122,11 +124,12 @@ const AddButton = styled.form`
   }
 `;
 
-const AddContainer = styled.div`
+const AddContainer = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  color: #828282;
 
   div {
     display: flex;
@@ -149,10 +152,18 @@ const AddContainer = styled.div`
   }
 
   button {
+    padding: 5px;
     margin-top: 30px;
     margin-right: 20px;
     border-color: #5282ff;
     color: #5282ff;
+  }
+
+  select {
+    -webkit-appearance: none;
+    border-radius: 5px;
+    border: #969696 solid 1px;
+    padding: 5px;
   }
 `;
 
