@@ -58,7 +58,7 @@ const Login = props => {
           cookiePolicy={'single_host_origin'}
         />
       </GoogleWrapper>
-      {error && <ErrorMessage>You are not a beta user</ErrorMessage>}
+      {error && <ErrorMessage>Beta users only</ErrorMessage>}
 
       <a target="_blank" href="https://gmail.us3.list-manage.com/subscribe?u=131e40b536b7522dc377d85b6&id=54fd5a4685">
         <SignUpButton>Sign up for Beta</SignUpButton>
@@ -105,6 +105,8 @@ const ErrorMessage = styled.span`
   margin-top: 20px !important;
 `;
 
+
+
 const SignUpButton = styled.button`
   font-size: 14px;
   font-weight: bold;
@@ -112,9 +114,10 @@ const SignUpButton = styled.button`
   outline: none;
   height: 35px;
   margin-top: 30px;
-  margin-right: 20px;
   border-color: #5282ff;
   color: #5282ff;
+  padding: 10px;
+  align-self: center;
 
   &:hover {
     cursor: pointer;

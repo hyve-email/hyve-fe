@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Modal from '../../shared/Modal';
 
@@ -11,6 +11,7 @@ class RowCard extends React.Component {
     drone_email: '',
     target_email: '',
     category: '',
+    isModalOpen: false,
   };
 
   componentDidMount() {
@@ -54,7 +55,7 @@ class RowCard extends React.Component {
   };
 
   render() {
-    const { muted } = this.state;
+    const { muted, isModalOpen } = this.state;
     return (
       <Row>
         <div className="site--details">
@@ -97,8 +98,12 @@ class RowCard extends React.Component {
             )}
 
             <button
-              style={{ borderColor: '#5282FF', color: '#5282FF' }}
-              // onClick={() => setModal(!isModalOpen)}
+              style={{
+                borderColor: '#5282FF',
+                color: '#5282FF',
+                width: '100%',
+              }}
+              onClick={() => this.setState({ isModalOpen: true })}
             >
               Reply
             </button>
@@ -109,12 +114,47 @@ class RowCard extends React.Component {
               Edit
             </span>
             <Modal
-            // toggle={setModal} isOpen={isModalOpen}
+              toggle={() => this.setState({ isModalOpen: false })}
+              isOpen={isModalOpen}
             >
-              <ReplyContainer>
+              <ReplyContainer onSubmit={this.submit}>
+                <span>Reply</span>
+                <div style={{ width: '100%' }}>
+                  <label htmlFor="to">To: </label>
+                  <input
+                    required
+                    name="to"
+                    type="text"
+                    aria-describedby="target_email"
+                  />
+                </div>
+
+                <div style={{ width: '100%' }}>
+                  <label htmlFor="subject">Subject</label>
+                  <input
+                    required
+                    name="subject"
+                    type="text"
+                    aria-describedby="target_email"
+                  />
+                </div>
+
+                <div style={{ width: '100%' }}>
+                  <label htmlFor="subject">Message</label>
+                  <textarea
+                    required
+                    name="subject"
+                    type="text"
+                    aria-describedby="target_email"
+                  />
+                </div>
+
                 <button
+                  type="submit"
                   style={{ borderColor: '#5282FF', color: '#5282FF' }}
-                  // onClick={() => setModal(!isModalOpen)}
+                  onClick={() => {
+                    console.log('post data');
+                  }}
                 >
                   Reply
                 </button>
@@ -195,12 +235,42 @@ const Row = styled.div`
   }
 `;
 
-const ReplyContainer = styled.div`
+const ReplyContainer = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 500px;
-  width: 800px;
+  flex-direction: column;
+  color: #828282;
+
+  div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 60%;
+  }
+
+  label {
+    margin-top: 25px;
+    margin-right: 10px;
+    margin-bottom: 3px;
+  }
+
+  input {
+    border-radius: 5px;
+    border: #969696 solid 1px;
+    padding: 5px;
+  }
+
+  button {
+  align-self: center;
+    width: 100%;
+    padding: 5px;
+    margin-top: 30px;
+    margin-right: 20px;
+    border-color: #5282ff;
+    color: #5282ff;
+    margin-right: 0;
+  }
 `;
 
 export default RowCard;

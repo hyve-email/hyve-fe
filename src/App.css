@@ -24,6 +24,10 @@
 }
 
 /* Google Login button */
+.google--login {
+  padding: 10px !important;
+}
+
 .google--login span {
   font-size: 20px;
 }
@@ -38,10 +42,11 @@
   color: #fff !important;
 }
 
-
 button {
   font-size: 14px;
   font-weight: bold;
   border-radius: 5px;
   outline: none;
+  height: auto;
+  width: auto;
 }

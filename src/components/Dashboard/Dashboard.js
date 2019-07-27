@@ -9,10 +9,10 @@ import Modal from '../shared/Modal';
 import DroneService from '../../services/drone';
 
 class Dashboard extends React.Component {
-  state = { isModalOpen: false };
+  state = { isAddModalOpen: false, isReplyModalOpen: false };
 
   async componentDidMount() {
-    this.setState({ isModalOpen: false });
+    this.setState({ isAddModalOpen: false, isReplyModalOpen: false });
   }
 
   submit = async e => {
@@ -26,7 +26,7 @@ class Dashboard extends React.Component {
     try {
       const response = await DroneService.create(target_email, category);
 
-      window.location.reload()
+      window.location.reload();
       console.log(response);
     } catch (e) {
       console.log(e);
@@ -38,14 +38,14 @@ class Dashboard extends React.Component {
       <DashboardContainer>
         <Header profileImage={localStorage.getItem('profile_image')} />
 
-        <AddButton onClick={() => this.setState({ isModalOpen: true })}>
+        <AddButton onClick={() => this.setState({ isAddModalOpen: true })}>
           <div>{PlusIcon()}</div>
           <span>Add Drone</span>
         </AddButton>
         <RowGroup />
         <Modal
-          isOpen={this.state.isModalOpen}
-          toggle={() => this.setState({ isModalOpen: false })}
+          isOpen={this.state.isAddModalOpen}
+          toggle={() => this.setState({ isAddModalOpen: false })}
         >
           <AddContainer onSubmit={this.submit}>
             <span>Add Drone</span>
@@ -129,6 +129,49 @@ const AddButton = styled.div`
 `;
 
 const AddContainer = styled.form`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #828282;
+
+  div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 30px;
+    width: 60%;
+  }
+
+  label {
+    margin-top: 25px;
+    margin-right: 10px;
+    margin-bottom: 3px;
+  }
+
+  input {
+    border-radius: 5px;
+    border: #969696 solid 1px;
+    padding: 5px;
+  }
+
+  button {
+    padding: 5px;
+    margin-top: 30px;
+    margin-right: 20px;
+    border-color: #5282ff;
+    color: #5282ff;
+  }
+
+  select {
+    -webkit-appearance: none;
+    border-radius: 5px;
+    border: #969696 solid 1px;
+    padding: 5px;
+  }
+`;
+
+const ReplyContainer = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
