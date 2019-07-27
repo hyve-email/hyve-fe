@@ -59,13 +59,10 @@ const Login = props => {
         />
       </GoogleWrapper>
       {error && <ErrorMessage>You are not a beta user</ErrorMessage>}
-      {error && (
-        <a href="https://gmail.us3.list-manage.com/subscribe?u=131e40b536b7522dc377d85b6&id=54fd5a4685">
-          <SignUpButton>
-            Sign up for Beta
-          </SignUpButton>
-        </a>
-      )}
+
+      <a target="_blank" href="https://gmail.us3.list-manage.com/subscribe?u=131e40b536b7522dc377d85b6&id=54fd5a4685">
+        <SignUpButton>Sign up for Beta</SignUpButton>
+      </a>
       {redirect && <Redirect to="/me" />}
     </LoginContainer>
   );
@@ -118,9 +115,9 @@ const SignUpButton = styled.button`
   margin-right: 20px;
   border-color: #5282ff;
   color: #5282ff;
-  
+
   &:hover {
-  cursor: pointer;
+    cursor: pointer;
   }
 `;
 
