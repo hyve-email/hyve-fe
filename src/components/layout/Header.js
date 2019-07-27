@@ -10,7 +10,7 @@ const Header = ({ profileImage }) => {
       <ButtonGroup>
         <a href="#">Account</a>
         <a href="#">Settings</a>
-        <img src={profileImage} alt="profile image" className="pic--placeholder" />
+        <img src={profileImage} alt="Profile thumbnail" className="pic--placeholder" />
       </ButtonGroup>
     </HeaderContainer>
   );

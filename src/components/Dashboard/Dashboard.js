@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import RowGroup from './components/RowGroup';
 import Header from "../layout/Header";
+const mockData = require('./mockData.json');
+
 
 const Dashboard = props => {
   useEffect(() => {

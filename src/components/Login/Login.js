@@ -44,7 +44,6 @@ const Login = props => {
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
           cookiePolicy={'single_host_origin'}
-          buttonText="Continue with Google"
         />
       </GoogleWrapper>
     </LoginContainer>
