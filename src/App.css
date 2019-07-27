@@ -37,3 +37,12 @@
   background-color: #397bf5 !important;
   color: #fff !important;
 }
+
+
+button {
+  font-size: 14px;
+  font-weight: bold;
+  height: 35px;
+  border-radius: 5px;
+  outline: none;
+}
