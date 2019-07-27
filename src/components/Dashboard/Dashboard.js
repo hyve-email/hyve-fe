@@ -1,10 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import RowGroup from './components/RowGroup';
 import Header from '../layout/Header';
 import mockData from './mockData';
+import { PlusIcon } from '../../assets/plus-solid';
+import Modal from '../shared/Modal';
 
 const Dashboard = props => {
+  const [isModalOpen, toggleModal] = useState(false);
+
   useEffect(() => {
     localStorage.setItem('name', 'John Doe');
     localStorage.setItem(
@@ -20,6 +24,23 @@ const Dashboard = props => {
   return (
     <DashboardContainer>
       <Header profileImage={localStorage.getItem('profile_image')} />
+
+      <AddButton onClick={() => toggleModal(true)}>
+        <div>{PlusIcon()}</div>
+        <span>Add a Virtual Email</span>
+      </AddButton>
+
+      <Modal isOpen={isModalOpen} toggle={toggleModal}>
+        <AddContainer>
+          <span>Add a Virtual Email</span>
+          <div>
+            <label htmlFor="drone">New Email</label>
+            <input name="drone" type="text" />
+          </div>
+
+          <button onClick={() => console.log('add email')}>Add Email</button>
+        </AddContainer>
+      </Modal>
 
       <RowGroup
         cardImg={localStorage.getItem('image')}
@@ -53,6 +74,57 @@ const DashboardContainer = styled.div`
     width: 80%;
     align-self: center;
     padding: 0 10px;
+  }
+`;
+
+const AddButton = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  align-self: flex-end;
+  margin-right: 13%;
+  margin-top: 40px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    background-color: #6c44fa;
+    margin-bottom: 15px;
+  }
+
+  span {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    color: #969696;
+  }
+`;
+
+const AddContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+  div {
+  margin-top: 30px;
+  }
+  
+  label {
+  margin-right: 10px;
+  }
+  
+  button {
+    margin-top: 30px;
   }
 `;
 
