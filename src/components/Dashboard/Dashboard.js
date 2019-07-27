@@ -29,7 +29,7 @@ const Dashboard = props => {
         <div>{PlusIcon()}</div>
         <span>Add Drone</span>
       </AddButton>
-
+      <RowGroup />
       <Modal isOpen={isModalOpen} toggle={toggleModal}>
         <AddContainer>
           <span>Add Drone</span>
@@ -46,22 +46,6 @@ const Dashboard = props => {
           </button>
         </AddContainer>
       </Modal>
-
-      <RowGroup
-        cardImg={localStorage.getItem('image')}
-        category="Spam"
-        categoryGroup={mockData.spam}
-      />
-      <RowGroup
-        cardImg={localStorage.getItem('image')}
-        category="Work"
-        categoryGroup={mockData.work}
-      />
-      <RowGroup
-        cardImg={localStorage.getItem('image')}
-        category="Personal"
-        categoryGroup={mockData.personal}
-      />
     </DashboardContainer>
   );
 };
@@ -89,7 +73,7 @@ const AddButton = styled.form`
   align-items: center;
   align-self: flex-end;
   margin-right: 13%;
-  margin-top: 40px;
+  margin-top: 20px;
 
   &:hover {
     cursor: pointer;

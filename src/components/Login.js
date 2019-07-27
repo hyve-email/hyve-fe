@@ -3,12 +3,14 @@ import styled from 'styled-components';
 import GoogleLogin from 'react-google-login';
 import Icon from './shared/Icon';
 import HyveLogo from '../assets/hyve-logo.png';
+import { Redirect } from 'react-router-dom';
 
 // API
 import UserService from '../services/user';
 
 const Login = props => {
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
   const responseGoogle = async response => {
     const { Zi, googleId, profileObj } = response;
@@ -17,18 +19,23 @@ const Login = props => {
     const data = { email, name, imageUrl, googleId };
 
     try {
-      // store accontID
-      await localStorage.setItem('googleToken', access_token);
-      await localStorage.setItem('googleId', googleId);
-      await localStorage.setItem('name', name);
-      await localStorage.setItem('email', email);
-      await localStorage.setItem('profile_image', imageUrl);
-
       const response = await UserService.create(data);
-      await localStorage.setItem('token', response.token);
-      await localStorage.setItem('accountId', response.data.account_id);
-      if (response.success === false) response.error && setError(response.error);
-      console.log({ response });
+
+      if (response.token) {
+        // store accontID
+        await localStorage.setItem('googleToken', access_token);
+        await localStorage.setItem('googleId', googleId);
+        await localStorage.setItem('name', name);
+        await localStorage.setItem('email', email);
+        await localStorage.setItem('profile_image', imageUrl);
+
+        await localStorage.setItem('token', response.token);
+        await localStorage.setItem('account_id', response.data.account_id);
+
+        setRedirect(true);
+      } else {
+        setError(true);
+      }
     } catch (err) {
       console.log({ err });
     }
@@ -51,7 +58,8 @@ const Login = props => {
           cookiePolicy={'single_host_origin'}
         />
       </GoogleWrapper>
-      <ErrorMessage>{error}</ErrorMessage>
+      {error && <ErrorMessage>You are not a beta user</ErrorMessage>}
+      {redirect && <Redirect to="/me" />}
     </LoginContainer>
   );
 };

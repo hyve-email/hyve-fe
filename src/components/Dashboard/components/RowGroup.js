@@ -2,23 +2,110 @@ import React from 'react';
 import styled from 'styled-components';
 import RowCard from './RowCard';
 
-const RowGroup = ({ category, categoryGroup }) => (
-  <RowGroupContainer>
-    <h2>{category}</h2>
+import DroneService from '../../../services/drone';
 
-    {categoryGroup.map((item, index) => {
-      const { icon_image, drone_email, target_email } = item;
-      return (
-        <RowCard
-          cardImg={icon_image}
-          droneEmail={drone_email}
-          key={index}
-          targetEmail={target_email}
-        />
-      );
-    })}
-  </RowGroupContainer>
-);
+class RowGroup extends React.Component {
+  state = {
+    spam_drones: [],
+    personal_drones: [],
+    work_drones: [],
+  };
+
+  async componentDidMount() {
+    try {
+      const data = await DroneService.read();
+
+      if (data.success) {
+        let { spam_drones, personal_drones, work_drones } = this.state;
+
+        const { drones } = data.data;
+
+        if (drones.PERSONAL && drones.PERSONAL.length > 0) {
+          this.setState({ personal_drones: drones.PERSONAL });
+        }
+        if (drones.WORK && drones.WORK.length > 0) {
+          this.setState({ work_drones: drones.WORK });
+        }
+        if (drones.SPAM && drones.SPAM.length > 0) {
+          this.setState({ spam_drones: drones.SPAM });
+        }
+      }
+    } catch (e) {
+      console.log({ e });
+    }
+  }
+
+  render() {
+    const { spam_drones, work_drones, personal_drones } = this.state;
+
+    return (
+      <RowGroupContainer>
+        <h2>Spam</h2>
+        {spam_drones.length > 0 ? (
+          spam_drones.map((drone, index) => {
+            return (
+              <RowCard
+                key={index}
+                accountId={drone.account_id}
+                cardImg={drone.icon_image}
+                droneEmail={drone.drone_email}
+                targetEmail={drone.target_email}
+                muted={drone.muted}
+                category={drone.category}
+              />
+            );
+          })
+        ) : (
+          <p style={{ fontWeight: '800', fontSize: '20px' }}>
+            No spam drones available
+          </p>
+        )}
+
+        <h2>Work</h2>
+        {work_drones.length > 0 ? (
+          work_drones.map((drone, index) => {
+            return (
+              <RowCard
+                key={index}
+                accountId={drone.account_id}
+                cardImg={drone.icon_image}
+                droneEmail={drone.drone_email}
+                targetEmail={drone.target_email}
+                muted={drone.muted}
+                category={drone.category}
+              />
+            );
+          })
+        ) : (
+          <p style={{ fontWeight: '800', fontSize: '20px' }}>
+            No work drones available
+          </p>
+        )}
+
+        <h2>Personal</h2>
+        {personal_drones.length > 0 ? (
+          personal_drones.map((drone, index) => {
+            return (
+              <RowCard
+                key={index}
+                accountId={drone.account_id}
+                cardImg={drone.icon_image}
+                droneEmail={drone.drone_email}
+                targetEmail={drone.target_email}
+                muted={drone.muted}
+                category={drone.category}
+              />
+            );
+          })
+        ) : (
+          <p style={{ fontWeight: '800', fontSize: '20px' }}>
+            No personal drones available
+          </p>
+        )}
+      </RowGroupContainer>
+    );
+  }
+}
 
 const RowGroupContainer = styled.div`
   display: flex;

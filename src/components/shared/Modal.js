@@ -17,7 +17,6 @@ const Portal = ({ children }) => {
 };
 
 const Modal = ({ children, toggle, isOpen }) => {
-  console.log('render modal');
   return (
     <Portal>
       {isOpen && (
