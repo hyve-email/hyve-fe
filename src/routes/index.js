@@ -21,6 +21,7 @@ const DefaultRoute = ({ component: Component, ...rest }) => {
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const token = localStorage.getItem('token');
+  console.log('token', token)
 
   const dashboard = (
     <Route

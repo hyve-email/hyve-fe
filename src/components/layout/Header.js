@@ -6,7 +6,14 @@ import Icon from '../shared/Icon';
 const Header = ({ profileImage }) => {
   return (
     <HeaderContainer>
-      <div style={{width:"75%", margin:"auto", display:"flex", justifyContent:"space-between" }}>
+      <div
+        style={{
+          width: '75%',
+          margin: 'auto',
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
         <Icon size={60} icon={HyveLogo} />
         <ButtonGroup>
           <a href="/#">Account Settings</a>
@@ -30,7 +37,7 @@ const HeaderContainer = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
-  border:1px solid rgba(188, 188, 188, 0.6);
+  border: 1px solid rgba(188, 188, 188, 0.6);
   i {
     margin-left: 30px;
   }
