@@ -5,37 +5,10 @@ import Header from '../layout/Header';
 import mockData from './mockData';
 
 const Dashboard = props => {
-  useEffect(() => {
-    localStorage.setItem('name', 'John Doe');
-    localStorage.setItem(
-      'image',
-      'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
-    );
-    localStorage.setItem(
-      'profile_image',
-      'https://content-static.upwork.com/uploads/2014/10/02123010/profilephoto_goodcrop.jpg'
-    );
-  });
-
   return (
     <DashboardContainer>
       <Header profileImage={localStorage.getItem('profile_image')} />
-
-      <RowGroup
-        cardImg={localStorage.getItem('image')}
-        category="Spam"
-        categoryGroup={mockData.spam}
-      />
-      <RowGroup
-        cardImg={localStorage.getItem('image')}
-        category="Work"
-        categoryGroup={mockData.work}
-      />
-      <RowGroup
-        cardImg={localStorage.getItem('image')}
-        category="Personal"
-        categoryGroup={mockData.personal}
-      />
+      <RowGroup />
     </DashboardContainer>
   );
 };

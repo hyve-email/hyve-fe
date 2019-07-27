@@ -2,67 +2,139 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Modal from '../../shared/Modal';
 
-const RowCard = ({ cardImg, droneEmail, targetEmail }) => {
-  const [isModalOpen, setModal] = useState(false);
-  useEffect(() => {}, [isModalOpen]);
-  console.log('isModalOpen', isModalOpen);
-  const onClick = () => console.log('button clicked');
+import DroneService from '../../../services/drone';
 
-  return (
-    <Row>
-      <div className="site--details">
-        <img
-          src={cardImg}
-          alt="Profile thumbnail"
-          className="pic--placeholder"
-        />
-        <div style={{ width: '55%' }}>
-          <div className="email--details">
-            <span>{targetEmail}</span>
-            <hr
-              style={{
-                border: 'none',
-                borderTop: '3px dotted #00F09A',
-                height: '1px',
-                width: '90%',
-                justifyContent: 'center',
-                marginLeft: 25,
-              }}
-            />
-            <span style={{ marginLeft: 20 }}>{droneEmail}</span>
+class RowCard extends React.Component {
+  state = {
+    account_id: '',
+    muted: false,
+    drone_email: '',
+    target_email: '',
+    category: '',
+  };
+
+  componentDidMount() {
+    this.setState({
+      account_id: this.props.accountId,
+      muted: this.props.muted,
+      drone_email: this.props.droneEmail,
+      target_email: this.props.targetEmail,
+      category: this.props.category,
+    });
+  }
+
+  onMute = async () => {
+    try {
+      const { muted, drone_email, target_email, category } = this.state;
+
+      const is_muted = !muted;
+
+      const response = await DroneService.update(
+        is_muted,
+        drone_email,
+        target_email,
+        category
+      );
+
+      if (response.success) {
+        const { data } = response;
+
+        this.setState({
+          muted: data.muted,
+          drone_email: data.drone_email,
+          target_email: data.target_email,
+          category: data.category,
+        });
+
+        this.componentDidMount();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  render() {
+    const { muted } = this.state;
+    return (
+      <Row>
+        <div className="site--details">
+          <img
+            src={this.props.cardImg}
+            alt="Profile thumbnail"
+            className="pic--placeholder"
+          />
+          <div style={{ width: '55%' }}>
+            <div className="email--details">
+              <span>{this.props.targetEmail}</span>
+              <hr
+                style={{
+                  border: 'none',
+                  borderTop: '3px dotted #00F09A',
+                  height: '1px',
+                  width: '90%',
+                  justifyContent: 'center',
+                  marginLeft: 25,
+                }}
+              />
+              <span style={{ marginLeft: 20 }}>{this.props.droneEmail}</span>
+            </div>
+          </div>
+          <div className="action--buttons">
+            {muted ? (
+              <button
+                style={{ backgroundColor: '#FF5252', color: '#fff' }}
+                onClick={this.onMute}
+              >
+                Unmute
+              </button>
+            ) : (
+              <button
+                style={{ borderColor: '#FF5252', color: '#FF5252' }}
+                onClick={this.onMute}
+              >
+                Mute
+              </button>
+            )}
+
+            <button
+              style={{ borderColor: '#5282FF', color: '#5282FF' }}
+              // onClick={() => setModal(!isModalOpen)}
+            >
+              Reply
+            </button>
+            <span
+              style={{ fontWeight: 6500 }}
+              // onClick={() => onClick()}
+            >
+              Edit
+            </span>
+            <Modal
+            // toggle={setModal} isOpen={isModalOpen}
+            >
+              <ReplyContainer>
+                <button
+                  style={{ borderColor: '#5282FF', color: '#5282FF' }}
+                  // onClick={() => setModal(!isModalOpen)}
+                >
+                  Reply
+                </button>
+              </ReplyContainer>
+            </Modal>
           </div>
         </div>
-        <div className="action--buttons">
-          <button
-            style={{ borderColor: '#FF5252', color: '#FF5252' }}
-            onClick={() => onClick()}
-          >
-            Mute
-          </button>
-          <button
-            style={{ borderColor: '#5282FF', color: '#5282FF' }}
-            onClick={() => setModal(!isModalOpen)}
-          >
-            Reply
-          </button>
-          <span style={{ fontWeight: 6500 }} onClick={() => onClick()}>
-            Edit
-          </span>
-          <Modal toggle={setModal} isOpen={isModalOpen}>
-            <ReplyContainer>
-              <button
-                style={{ borderColor: '#5282FF', color: '#5282FF' }}
-                onClick={() => setModal(!isModalOpen)}
-              >
-                Reply
-              </button>
-            </ReplyContainer>
-          </Modal>
-        </div>
-      </div>
-    </Row>
-  );
-};
+      </Row>
+    );
+  }
+}
+
+// ({ cardImg, droneEmail, targetEmail, account_id }) => {
+//   const [isModalOpen, setModal] = useState(false);
+//   const [accountId, setAccountId] = useState('');
+//   useEffect(() => {}, [isModalOpen]);
+//   console.log('isModalOpen', isModalOpen);
+//   const onClick = () => console.log('button clicked');
+
+// };
 
 const Row = styled.div`
   display: flex;
