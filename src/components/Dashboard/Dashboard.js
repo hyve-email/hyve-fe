@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import RowGroup from './components/RowGroup';
-import Header from "../layout/Header";
-const mockData = require('./mockData.json');
-
+import Header from '../layout/Header';
+import mockData from './mockData';
 
 const Dashboard = props => {
   useEffect(() => {
@@ -16,42 +15,49 @@ const Dashboard = props => {
       'profile_image',
       'https://content-static.upwork.com/uploads/2014/10/02123010/profilephoto_goodcrop.jpg'
     );
-    console.log('storage', localStorage);
   });
-
-
 
   return (
     <DashboardContainer>
       <Header profileImage={localStorage.getItem('profile_image')} />
-      <div className="dashboard--header">
-        <h3>You have 9,000 emails ✉️</h3>
-        <span>this time privacy is on your terms 💪</span>
-      </div>
+      {/*<div className="dashboard--header">*/}
+      {/*  <h3>You have 9,000 emails ✉️</h3>*/}
+      {/*  <span>this time privacy is on your terms 💪</span>*/}
+      {/*</div>*/}
 
-      <RowGroup cardImg={localStorage.getItem('image')} category="Spam" />
-      <RowGroup cardImg={localStorage.getItem('image')} category="Personal" />
-      <RowGroup cardImg={localStorage.getItem('image')} category="Professional" />
+      <RowGroup
+        cardImg={localStorage.getItem('image')}
+        category="Spam"
+        categoryGroup={mockData.spam}
+      />
+      <RowGroup
+        cardImg={localStorage.getItem('image')}
+        category="Work"
+        categoryGroup={mockData.work}
+      />
+      <RowGroup
+        cardImg={localStorage.getItem('image')}
+        category="Personal"
+        categoryGroup={mockData.personal}
+      />
     </DashboardContainer>
   );
 };
 
-Dashboard.propTypes = {};
-
 const DashboardContainer = styled.div`
-  .dashboard--header {
-    text-align: left;
-    width: 70%;
-    align-self: center;
-    padding: 0 10px;
-  }
-
   display: flex;
   justify-content: center;
   align-self: center;
   flex-direction: column;
   width: 100%;
   height: 100%;
+
+  .dashboard--header {
+    text-align: left;
+    width: 80%;
+    align-self: center;
+    padding: 0 10px;
+  }
 `;
 
 export default Dashboard;

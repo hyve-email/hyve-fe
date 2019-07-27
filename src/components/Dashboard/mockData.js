@@ -1,4 +1,4 @@
-{
+ const mockData = {
   "account_id": "5d3b4b1087e14f10127b632d",
   "spam": [
     {
@@ -66,4 +66,6 @@
       "icon_image": "https://res.cloudinary.com/biensupernice/image/upload/v1564173968/personal_icon_vksnnz.png"
     }
   ]
-}
+};
+
+export default mockData
