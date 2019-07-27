@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Modal from '../../shared/Modal';
 
 import DroneService from '../../../services/drone';
+import UserService from '../../../services/user';
 
 class RowCard extends React.Component {
   state = {
@@ -49,6 +50,30 @@ class RowCard extends React.Component {
       }
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  reply = async e => {
+    e.preventDefault();
+
+    const form = new FormData(e.target);
+
+    const to = form.get('to');
+    const drone_email = this.state.drone_email;
+    const subject = form.get('subject');
+    const message = form.get('message');
+
+    try {
+      const response = await UserService.reply(
+        to,
+        drone_email,
+        subject,
+        message
+      );
+
+      this.setState({ isModalOpen: false });
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -129,7 +154,7 @@ class RowCard extends React.Component {
               toggle={() => this.setState({ isModalOpen: false })}
               isOpen={isModalOpen}
             >
-              <ReplyContainer onSubmit={this.submit}>
+              <ReplyContainer onSubmit={this.reply}>
                 <span>Reply</span>
                 <div style={{ width: '100%' }}>
                   <label htmlFor="to">To: </label>
@@ -155,8 +180,10 @@ class RowCard extends React.Component {
                   <label htmlFor="subject">Message</label>
                   <textarea
                     required
-                    name="subject"
-                    type="text"
+                    name="message"
+                    type="textarea"
+                    rows="10"
+                    cols="50"
                     aria-describedby="target_email"
                   />
                 </div>
@@ -164,9 +191,6 @@ class RowCard extends React.Component {
                 <button
                   type="submit"
                   style={{ borderColor: '#5282FF', color: '#5282FF' }}
-                  onClick={() => {
-                    console.log('post data');
-                  }}
                 >
                   Reply
                 </button>
@@ -274,7 +298,7 @@ const ReplyContainer = styled.form`
   }
 
   button {
-  align-self: center;
+    align-self: center;
     width: 100%;
     padding: 5px;
     margin-top: 30px;

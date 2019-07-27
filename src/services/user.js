@@ -17,4 +17,18 @@ async function create(fields) {
   }
 }
 
-export default { create };
+async function reply(to, drone_email, subject, message) {
+  try {
+    const payload = { to, drone_email, subject, message };
+
+    const { data } = await userInstance.post('/reply', payload);
+
+    if (data.success) {
+      return data;
+    }
+  } catch (e) {
+    throw e;
+  }
+}
+
+export default { create, reply };
