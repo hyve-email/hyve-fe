@@ -59,6 +59,13 @@ const Login = props => {
         />
       </GoogleWrapper>
       {error && <ErrorMessage>You are not a beta user</ErrorMessage>}
+      {error && (
+        <a href="https://gmail.us3.list-manage.com/subscribe?u=131e40b536b7522dc377d85b6&id=54fd5a4685">
+          <SignUpButton>
+            Sign up for Beta
+          </SignUpButton>
+        </a>
+      )}
       {redirect && <Redirect to="/me" />}
     </LoginContainer>
   );
@@ -71,7 +78,7 @@ const LoginContainer = styled.div`
   width: 500px;
   justify-content: center;
   padding: 30px 0;
-  color: gray;
+  color: #828282;
   margin-top: 17vh;
 
   h3 {
@@ -99,6 +106,22 @@ const ErrorMessage = styled.span`
   font-weight: bold;
   font-size: 18px !important;
   margin-top: 20px !important;
+`;
+
+const SignUpButton = styled.button`
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  outline: none;
+  height: 35px;
+  margin-top: 30px;
+  margin-right: 20px;
+  border-color: #5282ff;
+  color: #5282ff;
+  
+  &:hover {
+  cursor: pointer;
+  }
 `;
 
 export default Login;
