@@ -1,6 +1,6 @@
 import React from 'react';
-import HyveLogo from '../assets/hyve-logo.png';
-import Dashboard from './Dashboard/Dashboard';
+import HyveLogo from '../../assets/hyve-logo.png';
+import Dashboard from '../Dashboard/Dashboard';
 
 const Icon = ({ icon, alt, size }) => {
   return <img height={size} width={size} src={icon} alt={alt} />;

@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import GoogleLogin from 'react-google-login';
-import PropTypes from 'prop-types';
-import Icon from '../Icon';
-import HyveLogo from '../../assets/hyve-logo.png';
+import Icon from './shared/Icon';
+import HyveLogo from '../assets/hyve-logo.png';
 
 // API
-import UserService from '../../services/user';
+import UserService from '../services/user';
 
 const responseGoogle = async response => {
   const { Zi, googleId, profileObj } = response;
@@ -44,7 +43,6 @@ const Login = props => {
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
           cookiePolicy={'single_host_origin'}
-          buttonText="Continue with Google"
         />
       </GoogleWrapper>
     </LoginContainer>
