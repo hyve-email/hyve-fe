@@ -3,12 +3,12 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom';
 
 // Components
 import Login from './components/Login';
-import Dashboard from './components/Dashboard/Dashboard';
+import Dashboard from './components/Dashboard';
 
 import HTTP404 from './components/shared/HTTP404';
 
 // Styles
-import './App.css';
+import './static/css/main.css';
 
 import { DefaultRoute, ProtectedRoute } from './routes';
 

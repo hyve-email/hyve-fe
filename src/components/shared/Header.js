@@ -1,11 +1,21 @@
 import React from 'react';
 import HyveLogo from '../../assets/hyve-logo.png';
 import styled from 'styled-components';
-import Icon from '../shared/Icon';
+import Icon from './Icon';
+
+import { Redirect } from 'react-router-dom';
 
 const Header = ({ profileImage }) => {
+  const [goHome, setGoHome] = React.useState(false);
+
+  const onLogout = async () => {
+    localStorage.clear();
+    window.location.reload();
+  };
+
   return (
     <HeaderContainer>
+      {goHome && <Redirect to="/" />}
       <div
         style={{
           width: '75%',
@@ -15,13 +25,22 @@ const Header = ({ profileImage }) => {
         }}
       >
         <Icon size={60} icon={HyveLogo} />
-        <ButtonGroup>
-          <img
-            src={profileImage}
-            alt="Profile thumbnail"
-            className="pic--placeholder"
-          />
-        </ButtonGroup>
+        <div className="header-right-container" style={{ display: 'flex' }}>
+          <ButtonGroup>
+            <img
+              src={profileImage}
+              alt="Profile thumbnail"
+              className="pic--placeholder"
+            />
+          </ButtonGroup>
+
+          <button
+            style={{ 'border-width': 0, color: '#FF504D', paddingLeft: '20px' }}
+            onClick={onLogout}
+          >
+            Logout
+          </button>
+        </div>
       </div>
     </HeaderContainer>
   );

@@ -68,4 +68,18 @@ async function update(muted, drone_email, target_email, category) {
   }
 }
 
-export default { read, update, create };
+async function remove(drone_email) {
+  try {
+    const { data } = await droneInstance.delete(
+      `/drone?drone_email=${drone_email}`
+    );
+
+    if (data.success) {
+      return data;
+    }
+  } catch (e) {
+    throw e;
+  }
+}
+
+export default { read, update, create, remove };

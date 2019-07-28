@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Modal from '../../shared/Modal';
+import Modal from './shared/Modal';
 
-import DroneService from '../../../services/drone';
-import UserService from '../../../services/user';
+import DroneService from '../services/drone';
+import UserService from '../services/user';
 
 class RowCard extends React.Component {
   state = {
@@ -18,6 +18,9 @@ class RowCard extends React.Component {
 
   componentDidMount() {
     this.setState({
+      isModalOpen: false,
+      isEditModalOpen: false,
+
       account_id: this.props.accountId,
       muted: this.props.muted,
       drone_email: this.props.droneEmail,
@@ -73,6 +76,26 @@ class RowCard extends React.Component {
       );
 
       this.setState({ isModalOpen: false });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  removeDrone = async e => {
+    e.preventDefault();
+
+    try {
+      const { drone_email } = this.state;
+
+      const response = await DroneService.remove(drone_email);
+
+      if (response.success) {
+        this.setState({
+          isModalOpen: false,
+          isEditModalOpen: false,
+        });
+        window.location.reload();
+      }
     } catch (e) {
       console.log(e);
     }
@@ -158,29 +181,17 @@ class RowCard extends React.Component {
             >
               <EditContainer onSubmit={this.submit}>
                 <span>Edit Drone</span>
-                <div style={{ width: '100%' }}>
-                  <label htmlFor="target_email">Email</label>
-                  <input
-                    required
-                    name="target_email"
-                    type="text"
-                    aria-describedby="target_email"
-                  />
-
-                  <label htmlFor="category">Category</label>
-                  <select
-                    required
-                    aria-describedby="category"
-                    name="category"
-                    id="category"
-                  >
-                    <option value="SPAM">Spam</option>
-                    <option value="WORK">Work</option>
-                    <option value="PERSONAL">Personal</option>
-                  </select>
-                </div>
-
-                <button type="submit">Edit drone</button>
+                <button
+                  style={{
+                    padding: '10px',
+                    'border-color': '#FF504D',
+                    color: '#FF504D',
+                    'margin-top': '15px',
+                  }}
+                  onClick={this.removeDrone}
+                >
+                  Remove drone
+                </button>
               </EditContainer>
             </Modal>
 

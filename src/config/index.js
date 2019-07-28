@@ -1,3 +1,3 @@
-const config = { API_URL: ' https://f1e838e9.ngrok.io' };
+const config = { API_URL: 'https://6062f6ec.ngrok.io' };
 
 export default config;

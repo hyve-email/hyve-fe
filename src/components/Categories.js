@@ -1,42 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import RowCard from './RowCard';
+import CategoryCard from './CategoryCard';
 
-import DroneService from '../../../services/drone';
-
-class RowGroup extends React.Component {
-  state = {
-    spam_drones: [],
-    personal_drones: [],
-    work_drones: [],
-  };
-
-  async componentDidMount() {
-    try {
-      const data = await DroneService.read();
-
-      if (data.success) {
-        let { spam_drones, personal_drones, work_drones } = this.state;
-
-        const { drones } = data.data;
-
-        if (drones.PERSONAL && drones.PERSONAL.length > 0) {
-          this.setState({ personal_drones: drones.PERSONAL });
-        }
-        if (drones.WORK && drones.WORK.length > 0) {
-          this.setState({ work_drones: drones.WORK });
-        }
-        if (drones.SPAM && drones.SPAM.length > 0) {
-          this.setState({ spam_drones: drones.SPAM });
-        }
-      }
-    } catch (e) {
-      console.log({ e });
-    }
-  }
-
+class Categories extends React.Component {
   render() {
-    const { spam_drones, work_drones, personal_drones } = this.state;
+    const { spam_drones, work_drones, personal_drones } = this.props;
 
     return (
       <RowGroupContainer>
@@ -44,7 +12,7 @@ class RowGroup extends React.Component {
         {spam_drones.length > 0 ? (
           spam_drones.map((drone, index) => {
             return (
-              <RowCard
+              <CategoryCard
                 key={index}
                 accountId={drone.account_id}
                 cardImg={drone.icon_image}
@@ -65,7 +33,7 @@ class RowGroup extends React.Component {
         {work_drones.length > 0 ? (
           work_drones.map((drone, index) => {
             return (
-              <RowCard
+              <CategoryCard
                 key={index}
                 accountId={drone.account_id}
                 cardImg={drone.icon_image}
@@ -86,7 +54,7 @@ class RowGroup extends React.Component {
         {personal_drones.length > 0 ? (
           personal_drones.map((drone, index) => {
             return (
-              <RowCard
+              <CategoryCard
                 key={index}
                 accountId={drone.account_id}
                 cardImg={drone.icon_image}
@@ -125,4 +93,4 @@ const RowGroupContainer = styled.div`
   }
 `;
 
-export default RowGroup;
+export default Categories;
