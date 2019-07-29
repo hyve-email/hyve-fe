@@ -51,7 +51,7 @@ const Login = props => {
       <GoogleWrapper>
         <GoogleLogin
           className="google--login"
-          clientId="497597479194-ahqalu2dcn6ggq2lrr5k0hov52dtr2uq.apps.googleusercontent.com"
+          clientId=""
           buttonText="Continue with Google"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
